@@ -8,6 +8,7 @@ import com.google.common.util.concurrent.{ AbstractIdleService, Service }
 import com.google.inject.Guice
 import mesosphere.chaos.http.{ HttpConf, HttpModule, HttpService }
 import mesosphere.chaos.metrics.MetricsModule
+import mesosphere.util.PortAllocator
 import org.apache.commons.io.FileUtils
 import org.rogach.scallop.ScallopConf
 import org.slf4j.LoggerFactory
@@ -34,7 +35,7 @@ object ProcessKeeper {
   private[this] val ENV_MESOS_WORK_DIR: String = "MESOS_WORK_DIR"
 
   case class MesosConfig(
-    port: Int = 5050,
+    port: Int = PortAllocator.ephemeralPort(),
     launcher: String = "posix",
     containerizers: String = "mesos",
     isolation: Option[String] = None,
@@ -53,7 +54,7 @@ object ProcessKeeper {
   }
 
   def startZooKeeper(port: Int, workDir: String, wipeWorkDir: Boolean = true, superCreds: Option[String] = None): Unit = {
-    val systemArgs: List[String] = "-Dzookeeper.jmx.log4j.disable=true" :: Nil
+    val systemArgs: List[String] = "-Dzookeeper.forceSync=no -Dzookeeper.jmx.log4j.disable=true" :: Nil
     val sd: List[String] = superCreds match {
       case None => Nil
       case Some(userPassword) =>
