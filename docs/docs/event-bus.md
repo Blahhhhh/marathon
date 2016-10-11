@@ -307,8 +307,12 @@ Fired when a new http callback subscriber is added or removed:
     },
     "steps": [
       {
-        "action": "ScaleApplication",
-        "app": "/my-app"
+        "actions": [
+          {
+            "type": "ScaleApplication",
+            "app": "/my-app"
+          }
+        ]
       }
     ],
     "version": "2014-03-01T23:24:14.846Z"
@@ -373,8 +377,12 @@ Fired when a new http callback subscriber is added or removed:
     },
     "steps": [
       {
-        "action": "ScaleApplication",
-        "app": "/my-app"
+        "actions": [
+          {
+            "type": "ScaleApplication",
+            "app": "/my-app"
+          }
+        ]
       }
     ],
     "version": "2014-03-01T23:24:14.846Z"
@@ -439,8 +447,12 @@ Fired when a new http callback subscriber is added or removed:
     },
     "steps": [
       {
-        "action": "ScaleApplication",
-        "app": "/my-app"
+        "actions": [
+          {
+            "type": "ScaleApplication",
+            "app": "/my-app"
+          }
+        ]
       }
     ],
     "version": "2014-03-01T23:24:14.846Z"
